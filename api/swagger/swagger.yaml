@@ -29,6 +29,8 @@ paths:
       responses:
         "200":
           description: Get all Notes
+          schema:
+            $ref: "#/definitions/AllNotes"
     post:
       operationId: saveNote
       parameters:
@@ -45,8 +47,6 @@ paths:
 # complex objects have schema definitions
 definitions:
   Note:
+    type: string
+  AllNotes:
     type: object
-    properties:
-        text:
-          type: string
-          description: The Note Item
