@@ -49,4 +49,4 @@ definitions:
   Note:
     type: string
   AllNotes:
-    type: object
+    type: string
