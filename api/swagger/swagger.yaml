@@ -14,7 +14,7 @@ schemes:
   - https
 # format of bodies a client can send (Content-Type)
 consumes:
-  - application/json
+  - text/plain
 # format of the responses to the client (Accepts)
 produces:
   - application/json

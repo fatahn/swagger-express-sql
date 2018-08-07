@@ -24,10 +24,8 @@ function hello(req, res) {
 }
 
 function saveNote(req, res) {
-  NoteModel.sync({force:true}).then(() => {
-    return NoteModel.create({text: 'New Text'})
-  })
-  res.json('saved new text note')
+  NoteModel.create({text: req.body})
+    res.json(`saved new entry: ${req.body}`)
 }
 
 function getNotes(req, res) {
