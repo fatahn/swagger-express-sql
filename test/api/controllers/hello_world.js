@@ -1,6 +1,6 @@
-var should = require('should');
-var request = require('supertest');
-var server = require('../../../app');
+const should = require('should')
+const request = require('supertest')
+const server = require('../../../app')
 
 describe('controllers', function() {
 
@@ -16,13 +16,13 @@ describe('controllers', function() {
           .expect('Content-Type', /json/)
           .expect(200)
           .end(function(err, res) {
-            should.not.exist(err);
+            should.not.exist(err)
 
-            res.body.should.eql('Hello, stranger!');
+            res.body.should.eql('Hello, stranger!')
 
-            done();
-          });
-      });
+            done()
+          })
+      })
 
       it('should accept a name parameter', function(done) {
 
@@ -33,16 +33,16 @@ describe('controllers', function() {
           .expect('Content-Type', /json/)
           .expect(200)
           .end(function(err, res) {
-            should.not.exist(err);
+            should.not.exist(err)
 
-            res.body.should.eql('Hello, Scott!');
+            res.body.should.eql('Hello, Scott!')
 
-            done();
-          });
-      });
+            done()
+          })
+      })
 
-    });
+    })
 
-  });
+  })
 
-});
+})

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const config = require('../config')
 
-const sequelize = new Sequelize('notes', null, null, config);
+const sequelize = new Sequelize('notes', null, null, config)
 
 const Note = sequelize.define(
   'note', {
@@ -11,4 +11,4 @@ const Note = sequelize.define(
 module.exports = {
   db: sequelize,
   Note: Note
-};
+}
