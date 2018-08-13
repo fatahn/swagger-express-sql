@@ -14,17 +14,16 @@ const config = {
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err }
 
-  // install middleware
-  swaggerExpress.register(app)
+  // Defining a route automatically adds app.router to the middleware chain,
+  // which may put it ahead of the user defined middleware.
+  // https://stackoverflow.com/questions/11038830/how-to-intercept-node-js-express-request
+
   // middleware
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(validator())
+  // swager handles our route definations
+  swaggerExpress.register(app)
 
   const port = process.env.PORT || 10010
   app.listen(port)
-
-
-  // if (swaggerExpress.runner.swagger.paths['/notes']) {
-  //   console.log('try this:\nlocalhost:10010/notes to get all notes')
-  // }
 })
