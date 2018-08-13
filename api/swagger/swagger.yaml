@@ -23,7 +23,7 @@ paths:
     # binds a127 app logic to a route
     x-swagger-router-controller: notes
     get:
-      description: Returns a list of saved notes
+      description: Success
       # used as the method name of the controller
       operationId: getNotes
       responses:
@@ -35,13 +35,24 @@ paths:
       operationId: saveNote
       parameters:
       - name: note
-        in: body
+        in: "body"
         description: Text note you want to save
         schema:
           $ref: "#/definitions/Note"
       responses:
         "201":
           description: returns the saved note
+          schema:
+            $ref: "#/definitions/Note"
+
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/Note"
+        default:
+            description: Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -49,4 +60,12 @@ definitions:
   Note:
     type: string
   AllNotes:
+    title: Return All notes
     type: string
+    example: "[{},{},{} ...]"
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
