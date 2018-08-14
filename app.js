@@ -2,8 +2,8 @@
 
 const SwaggerExpress = require('swagger-express-mw')
 const app = require('express')()
-const bodyParser = require('body-parser')
-const validator = require('express-validator')
+// const bodyParser = require('body-parser')
+// const validator = require('express-validator')
 
 module.exports = app // for testing
 
@@ -19,8 +19,8 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   // https://stackoverflow.com/questions/11038830/how-to-intercept-node-js-express-request
 
   // middleware
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(validator())
+  // app.use(bodyParser.urlencoded({ extended: false }));
+  // app.use(validator())
   // swager handles our route definations
   swaggerExpress.register(app)
 

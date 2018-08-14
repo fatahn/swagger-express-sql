@@ -9,13 +9,24 @@ module.exports = {
 }
 
 function saveNote(req, res) {
-  req.checkBody("text", "Please use an email").isEmail()
-  NoteModel.create({text: req.body})
-    res.json(`saved new entry: ${req.body.text}`)
+  // req.checkBody("text", "Please use an email").isEmail()
+
+  // const errors = req.validationErrors();
+  // // if (errors) {
+  //   res.send(errors);
+  //   return
+  // } else {
+  //   NoteModel.findAll().then(notes => {
+  //     res.json(notes)
+  //   })
+  // // }
+  // NoteModel.create({text: req.body})
+  // res.json(`saved new entry: ${'req.body.text'}`)
+  res.json(req.body)
+  console.log(req.body)
 }
 
 function getNotes(req, res) {
-  req.checkBody("leader_email", "Enter a valid email address.").isEmail()
   NoteModel.findAll().then(notes => {
       res.json(notes)
     })
