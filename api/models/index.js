@@ -3,12 +3,12 @@ const config = require('../config')
 
 const sequelize = new Sequelize('notes', null, null, config)
 
-const Note = sequelize.define(
-  'note', {
-    text: Sequelize.STRING,
-})
+const Note = sequelize.define('note', { text: Sequelize.STRING })
+
+const Op = Sequelize.Op
 
 module.exports = {
   db: sequelize,
-  Note: Note
+  Note: Note,
+  Op: Op,
 }

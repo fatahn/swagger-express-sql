@@ -1,9 +1,6 @@
-'use strict'
-
 const SwaggerExpress = require('swagger-express-mw')
 const app = require('express')()
-// const bodyParser = require('body-parser')
-// const validator = require('express-validator')
+const bodyParser = require('body-parser')
 
 module.exports = app // for testing
 
@@ -18,11 +15,11 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   // which may put it ahead of the user defined middleware.
   // https://stackoverflow.com/questions/11038830/how-to-intercept-node-js-express-request
 
-  // middleware
-  // app.use(bodyParser.urlencoded({ extended: false }));
-  // app.use(validator())
-  // swager handles our route definations
+  // middlewares
+  app.use(bodyParser.json())
   swaggerExpress.register(app)
+
+
 
   const port = process.env.PORT || 10010
   app.listen(port)

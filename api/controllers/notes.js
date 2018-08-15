@@ -1,7 +1,9 @@
-'use strict'
-
 const db = require('../models').db
 const NoteModel = require('../models').Note
+const Op = require('../models').Op
+const Joi = require('joi')
+
+const schema = Joi.string()
 
 module.exports = {
   getNotes: getNotes,
@@ -9,25 +11,22 @@ module.exports = {
 }
 
 function saveNote(req, res) {
-  // req.checkBody("text", "Please use an email").isEmail()
-
-  // const errors = req.validationErrors();
-  // // if (errors) {
-  //   res.send(errors);
-  //   return
-  // } else {
-  //   NoteModel.findAll().then(notes => {
-  //     res.json(notes)
-  //   })
-  // // }
-  // NoteModel.create({text: req.body})
-  // res.json(`saved new entry: ${'req.body.text'}`)
-  res.json(req.body)
-  console.log(req.body)
+  Joi.validate(req.body.note, schema, { convert: false }, (error, value) => {
+    if(error) throw error
+    NoteModel.create({text: value})
+      .then(res.json(`saved new entry: ${value}`))
+      .catch(error => { res.json('Problem saving to DB') })
+  })
 }
 
 function getNotes(req, res) {
-  NoteModel.findAll().then(notes => {
-      res.json(notes)
-    })
+  NoteModel.findAll({
+    where: {
+      text: {
+        [Op.not]: null // IS NOT NULL
+      }
+    }
+  }).then(notes => {
+    res.json(notes)
+  })
 }
