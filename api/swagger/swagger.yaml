@@ -14,7 +14,7 @@ schemes:
   - https
 # format of bodies a client can send (Content-Type)
 consumes:
-  - text/plain
+  - application/json
 # format of the responses to the client (Accepts)
 produces:
   - application/json
@@ -58,10 +58,12 @@ paths:
 # complex objects have schema definitions
 definitions:
   Note:
-    type: string
+    type: object
   AllNotes:
-    title: Return All notes
-    type: string
+    title: All notes
+    type: array
+    items:
+      type: object
     example: "[{},{},{} ...]"
   ErrorResponse:
     required:
