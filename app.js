@@ -19,8 +19,6 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   app.use(bodyParser.json())
   swaggerExpress.register(app)
 
-
-
   const port = process.env.PORT || 10010
   app.listen(port)
 })
